@@ -8,7 +8,7 @@ const addRequestValidator = [
     .isEmpty()
     .withMessage("Titre ne peut pas être vide!")
     .bail()
-    .isLength({ min: 5, max: 100  })
+    .isLength({ min: 5, max: 100 })
     .withMessage("Le titre doit contenir entre 6 et 100 caractères !")
     .bail(),
   check("type")
@@ -101,7 +101,7 @@ const updateValidator = [
     }),
   check("titre")
     .optional()
-    .isLength({ min: 5, max: 100  })
+    .isLength({ min: 5, max: 100 })
     .withMessage("Le titre doit contenir entre 6 et 100 caractères !"),
   check("type")
     .optional()

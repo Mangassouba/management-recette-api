@@ -1,4 +1,4 @@
-## Gestion de Recettes - Application Node.js
+## Gestion de Recettes Api
 
 ## Description
 
@@ -25,13 +25,13 @@ Avant de démarrer, assurez-vous d'avoir installé les logiciels suivants :
 1. Clonez le dépôt sur votre machine locale :
 
 ```
-git clone https://github.com/Mangassouba/gestion-recipes-api.git
+git clone https://github.com/Mangassouba/management-recette-api.git
 ```
 
 2. Accédez au répertoire du projet :
 
 ```
-cd gestion-recipes-api
+cd management-recette-api
 ```
 
 3. Installez les dépendances du projet :
@@ -39,6 +39,10 @@ cd gestion-recipes-api
 ```
 npm install
 ```
+
+## Configuration de la base de donnée
+
+dans le projet le fichier .env.example faut le renommé en .env et ajouter vos identifiant pour pouvoir se conncter à la base de donnée
 
 ## Utilisation
 
@@ -57,19 +61,28 @@ Pour démarrer l'application, exécutez la commande suivante :
 - Réponse
 
         [
-                {
-                    "id": 2,
-                    "titre": "Crêpes classiques",
-                    "type": "Dessert",
-                    "ingredient": "250g de farine, 3 ?ufs"
-                },
-                {
-                    "id": 3,
-                    "titre": "Soupe de légumes",
-                    "type": "Entrée",
-                    "ingredient": "3 carottes, 2 pommes de terre"
-                }
-            ]
+          {
+              "id": 28,
+              "titre": "maffe",
+              "type": "entrée",
+              "ingredient": "dvs,dksd",
+              "category_id": 1
+          },
+          {
+              "id": 32,
+              "titre": "plat maro",
+              "type": "dessert",
+              "ingredient": "mat ma nan",
+              "category_id": 6
+          },
+          {
+              "id": 33,
+              "titre": "crepes",
+              "type": "plat",
+              "ingredient": "farine",
+              "category_id": 5
+          },
+      ]
 
 ## POST /recipes
 
@@ -78,12 +91,11 @@ Pour démarrer l'application, exécutez la commande suivante :
 - Corps de la requête :
 
 ```
-{
-
-"titre": "Salades Césars",
-"type": "Entrée",
-"ingredient": "Laitue, Poulet, Parmesan, Croutons"
-
+    {
+      "titre": "Salades Césars",
+      "type": "Entrée",
+      "ingredient": "Laitue, Poulet, Parmesan, Croutons",
+      "category_id": 5
     }
 ```
 
@@ -104,7 +116,8 @@ Pour démarrer l'application, exécutez la commande suivante :
           {
           "titre": "Salade Césars",
           "type": "Entrée",
-          "ingredient": "Laitue, Poulet, Parmesan, Croutons"
+          "ingredient": "Laitue, Poulet, Parmesan, Croutons",
+          "category_id": 5
           }
 
 - Réponse :
@@ -127,6 +140,85 @@ Pour démarrer l'application, exécutez la commande suivante :
 }
 ```
 
+## GET /category
+
+- Description : Récupère toutes les categories.
+
+- Réponse
+
+        [
+          {
+              "id": 1,
+              "name": "Pizzass"
+          },
+          {
+              "id": 2,
+              "name": "crepe"
+          },
+          {
+              "id": 5,
+              "name": "Tiramisu"
+          },
+          {
+              "id": 6,
+              "name": "Tiramisusss"
+          },
+          {
+              "id": 36,
+              "name": "Pizzaria"
+          }
+      ]
+
+## POST /category
+
+- Description : Crée une nouvelle categorie.
+
+- Corps de la requête :
+
+```
+    {
+     "name": "Pizza"
+    }
+```
+
+- Reponse:
+
+```
+{
+  "message": "categorie ajouter avec succès"
+}
+```
+
+## PUT /category/id
+
+- Description : Met à jour une categorie existante.
+
+- Corps de la requête :
+
+        {
+          "name": "Pizza"
+        }
+
+- Réponse :
+
+```
+
+{
+  "message": "Categorie mise à jour avec succès"
+}
+```
+
+## DELETE /category/id
+
+- Description : Supprime une recette par ID.
+- Réponse :
+
+```
+{
+  "message": "Recette supprimée avec succès"
+}
+```
+
 ## les tests unitaires
 
 L'application utilise Jasmine pour les tests unitaires. Pour exécuter les tests, utilisez la commande suivante :
@@ -137,14 +229,20 @@ npm test
 
 Exemple:
 
-![](/src/assets/images/img%20test.JPG)
+![](/src/assets/images/img%20test.png)
 
 Les tests incluent la vérification des fonctionnalités principales telles que la création, la récupération, la mise à jour, et la suppression des recettes.
+
+## Recherche des erreurs et formatage de code
+
+- Analyse du code: recherche des erreurs dans le code
+
+      npm run lint
+
+- Formatage de code
+
+      npm run format
 
 ## Auteur
 
 [Hama Houllah Mangassouba](https://github.com/Mangassouba)
-
-Contributeur
-
-[N'Diaye Ousmane Camara](https://github.com/NdiayeOusmanaCamara)

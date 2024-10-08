@@ -8,7 +8,7 @@ const addRequestValidator = [
     .isEmpty()
     .withMessage("nom ne peut pas être vide!")
     .bail()
-    .isLength({ min: 5, max:100 })
+    .isLength({ min: 5, max: 100 })
     .withMessage("Le nom doit contenir entre 5 et 100 caractères !")
     .bail()
     .custom(async (value) => {
@@ -90,7 +90,7 @@ const updateValidator = [
     }),
   check("name")
     .optional()
-    .isLength({ min: 5, max:100 })
+    .isLength({ min: 5, max: 100 })
     .withMessage("Le nom doit contenir entre 5 et 100 caractères !"),
   (req, res, next) => {
     const errors = validationResult(req);
