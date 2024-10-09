@@ -16,7 +16,7 @@ CREATE TABLE IF NOT EXISTS recipes (
    type TEXT NOT NULL,
    ingredient TEXT NOT NULL,
    category_id INT NOT NULL,
-   FOREIGN KEY(category_id) REFERENCES categorys(id)
+   FOREIGN KEY(category_id) REFERENCES categorys(id) ON DELETE RESTRICT
 );
 
 

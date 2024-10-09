@@ -6,7 +6,7 @@ describe("Recipe tests", () => {
 
   it("can be create", async () => {
     const recipe = {
-      titre: "crepe",
+      titre: "houto",
       type: "dessert",
       ingredient: "farine",
       category_id: 1,
@@ -25,11 +25,17 @@ describe("Recipe tests", () => {
 
   it("can not be create", async () => {
     try {
-      const recipe = { titre: null, type: "dessert", ingredient: "farime" };
+      const recipe = {
+        titre: null,
+        type: "dessert",
+        ingredient: "farime",
+        category_id: 1,
+      };
       const result = await Recipe.createRecipe(
         recipe.titre,
         recipe.type,
         recipe.ingredient,
+        recipe.category_id,
       );
       recipeId = result.insertId;
       const recipeCreated = await Recipe.getRecipeById(recipeId);
@@ -58,15 +64,17 @@ describe("Recipe tests", () => {
   it("Can be update recipe", async () => {
     const recipe = {
       id: 2,
-      titre: "crepe",
+      titre: "fouton",
       type: "dessert",
       ingredient: "farime",
+      category_id: 1,
     };
     const update = await Recipe.updateRecipe(
       recipe.id,
       recipe.titre,
       recipe.type,
       recipe.ingredient,
+      recipe.category_id,
     );
     expect(update).not.toBeNull();
   });
@@ -76,7 +84,7 @@ describe("Category tests", () => {
   let categoryId = null;
 
   it("can be create Category", async () => {
-    const recipe = { name: "crepe" };
+    const recipe = { name: "drerer" };
     const result = await Category.createCategory(recipe.name);
     categoryId = result.insertId;
     const categoryCreated = await Category.getCategoryById(categoryId);
@@ -115,7 +123,7 @@ describe("Category tests", () => {
   it("Can be update category", async () => {
     const category = {
       id: 2,
-      name: "crepe",
+      name: "drers",
       ingredient: "farine",
     };
     const update = await Category.updateCategory(category.id, category.name);
